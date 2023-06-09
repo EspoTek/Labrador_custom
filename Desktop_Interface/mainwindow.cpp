@@ -13,6 +13,26 @@
 #define GIT_HASH_SHORT 0000000
 #endif
 
+void hideWidgetsInLayout(QLayout* layout)
+{
+// Iterate over all the items in the layout
+for (int i = 0; i < layout->count(); ++i) {
+QLayoutItem* item = layout->itemAt(i);
+QWidget* widget = item->widget();
+
+// If the item is a widget, hide it
+if (widget) {
+widget->setVisible(false);
+}
+// If the item is a layout, hide all the widgets in the child layout
+else {
+QLayout* childLayout = item->layout();
+if (childLayout) {
+hideWidgetsInLayout(childLayout);
+}
+}
+    }
+}
 namespace
 {
    constexpr uint32_t MAX_CONSOLE_BLOCK_COUNT = 512;
@@ -279,6 +299,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->verticalLayout->addWidget(spectrumLayoutWidget);
     spectrumLayoutWidget->setVisible(false);
+
+    hideWidgetsInLayout(ui->verticalLayout_18);
+    hideWidgetsInLayout(ui->verticalLayout_5);
+    ui->menuBar->setVisible(false);
 }
 
 MainWindow::~MainWindow()
