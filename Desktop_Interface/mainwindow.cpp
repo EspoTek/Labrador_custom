@@ -4,6 +4,9 @@
 #include <QDesktopServices>
 #include "espospinbox.h"
 
+#include <QScreen>
+#include <QGuiApplication>
+
 #include <algorithm>
 
 #define DO_QUOTE(X) #X
@@ -303,6 +306,19 @@ MainWindow::MainWindow(QWidget *parent) :
     hideWidgetsInLayout(ui->verticalLayout_18);
     hideWidgetsInLayout(ui->verticalLayout_5);
     ui->menuBar->setVisible(false);
+
+// This will give you a pointer to the QScreen object for the display
+QScreen *screen = QGuiApplication::primaryScreen();
+
+// Here, we retrieve the size of the screen
+QRect screenGeometry = screen->geometry();
+
+// You can get the height and width like this:
+int height = screenGeometry.height();
+int width = screenGeometry.width();
+
+// And finally, resize your window
+    this->resize(width, height);
 }
 
 MainWindow::~MainWindow()
