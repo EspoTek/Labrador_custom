@@ -44,8 +44,8 @@ else
     sudo mv gcc-8.1.0 /usr/local/gcc-8.1.0-labrador
 fi
 
-# Clone the latest version of Labrador
-rm -rf labrador
+# Clone the latest version of Labrador_custom
+rm -rf labrador_custom
 git clone --depth 1 https://github.com/espotek/labrador_custom
 
 # Set PATH so that make can find gcc-8.10
@@ -55,14 +55,14 @@ export PATH=/usr/local/gcc-8.1.0-labrador/bin:$PATH
 export QT_SELECT=qt5
 
 # Build labrador
-cd labrador/Desktop_Interface
+cd labrador_custom/Desktop_Interface
 qmake
 make CXX=g++-8.1.0 CC=gcc-8.1.0
 sudo make install
 
 # Cleanup
 rm -rf raspberry-pi-gcc-binary
-rm -rf labrador
+rm -rf labrador_custom
 
 echo "Labrador installation success!"
 echo "To run the software, enter \"labrador\" into the terminal or open the app from the \"Education\" menu."
