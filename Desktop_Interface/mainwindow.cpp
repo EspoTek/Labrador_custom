@@ -1094,7 +1094,7 @@ void MainWindow::initShortcuts(){
 
     shortcut_Debug = new QShortcut(QKeySequence("Home"), this);
     shortcut_Esc = new QShortcut(QKeySequence("Esc"), this);
-
+    shortcut_F11 = new QShortcut(QKeySequence("F11"), this);
 
     connect(shortcut_cycleBaudRate_CH1, SIGNAL(activated()), this, SLOT(cycleBaudRate_CH1()));
     connect(shortcut_cycleBaudRateBackwards_CH1, SIGNAL(activated()), this, SLOT(cycleBaudRateBackwards_CH1()));
@@ -1125,7 +1125,7 @@ void MainWindow::initShortcuts(){
 
     connect(shortcut_Debug, SIGNAL(activated()), this, SLOT(enableLabradorDebugging()));
     connect(shortcut_Esc, SIGNAL(activated()), this, SLOT(reinitUsb()));
-
+    connect(shortcut_F11, SIGNAL(activated()), this, SLOT(toggleFullScreen()));
 }
 
 void MainWindow::timeBaseNeedsChanging(bool positive){
@@ -2611,4 +2611,9 @@ void MainWindow::on_actionFrequency_Spectrum_triggered(bool checked)
         MAX_WINDOW_SIZE = 1<<17;
     else
         MAX_WINDOW_SIZE = 10;
+}
+
+void MainWindow::toggleFullScreen(void)
+{
+    isFullScreen() ? showNormal() : showFullScreen();
 }
