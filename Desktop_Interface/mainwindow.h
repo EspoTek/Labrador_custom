@@ -128,7 +128,6 @@ private slots:
     void resetUsbState(void);
     void rSourceIndexChanged(int newSource);
     void multimeterStateChange(bool state);
-    void toggleFullScreen(void);
 
 #ifdef PLATFORM_ANDROID
     //Android Special
